@@ -1,0 +1,27 @@
+const Web3 = require('web3');
+
+// Connect to the Ethereum network
+const web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/v3/YOUR-PROJECT-ID'));
+
+// Contract address
+const contractAddress = '0x123456789abcdefghijklmnopqrstuvwxyz';
+
+// ABI (Application Binary Interface) of the contract
+const contractABI = [{...}];
+
+// Create a contract instance
+const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
+
+// Event name to listen for
+const eventName = 'MyEvent';
+
+// Subscribe to the event
+contractInstance.events[eventName]({}, (error, event) => {
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  // Log event data
+  console.log(event.returnValues);
+});
